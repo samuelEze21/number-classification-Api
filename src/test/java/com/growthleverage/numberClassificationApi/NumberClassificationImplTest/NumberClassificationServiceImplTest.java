@@ -53,5 +53,4 @@ public class NumberClassificationServiceImplTest {
         assertEquals(6, numberClassificationService.calculateDigitSum(123));
         assertEquals(9, numberClassificationService.calculateDigitSum(153));
     }
-
 }
