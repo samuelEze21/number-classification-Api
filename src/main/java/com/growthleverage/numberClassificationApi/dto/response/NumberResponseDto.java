@@ -2,14 +2,13 @@ package com.growthleverage.numberClassificationApi.dto.response;
 import java.util.List;
 
 public class NumberResponseDto {
-    private int number;
-    private boolean isPrime;
-    private boolean isPerfect;
+    private Integer number;
+    private Boolean isPrime;
+    private Boolean isPerfect;
     private List<String> properties;
-    private int digitSum;
+    private Integer digitSum;
     private String funFact;
     private Boolean error;
-    private String errorMessage;
 
     public NumberResponseDto(int number, boolean isPrime, boolean isPerfect, List<String> properties, int digitSum, String funFact) {
         this.number = number;
@@ -19,23 +18,22 @@ public class NumberResponseDto {
         this.digitSum = digitSum;
         this.funFact = funFact;
         this.error = false;
-        this.errorMessage = null;
     }
 
-    public NumberResponseDto(String errorMessage) {
-        this.error = true;
-        this.errorMessage = errorMessage;
+    public NumberResponseDto(String number, boolean error) {
+        this.number = number != null ? Integer.valueOf(number) : null;
+        this.error = error;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public boolean isPrime() {
+    public Boolean getIsPrime() {
         return isPrime;
     }
 
-    public boolean isPerfect() {
+    public Boolean getIsPerfect() {
         return isPerfect;
     }
 
@@ -43,7 +41,7 @@ public class NumberResponseDto {
         return properties;
     }
 
-    public int getDigitSum() {
+    public Integer getDigitSum() {
         return digitSum;
     }
 
@@ -53,9 +51,5 @@ public class NumberResponseDto {
 
     public Boolean getError() {
         return error;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
     }
 }

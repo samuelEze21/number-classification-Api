@@ -2,7 +2,7 @@ package com.growthleverage.numberClassificationApi.model;
 
 import java.util.List;
 
-public class NumberResponse {
+public class Number {
     public Object number;
     public Boolean isPrime;
     private Boolean isPerfect;
@@ -11,7 +11,7 @@ public class NumberResponse {
     private String funFact;
     private Boolean error;
 
-    public NumberResponse(int number, Boolean isPrime, Boolean isPerfect, List<String> properties, Integer digitSum, String funFact, Boolean error) {
+    public Number(int number, Boolean isPrime, Boolean isPerfect, List<String> properties, Integer digitSum, String funFact, Boolean error) {
         this.number = number;
         this.isPrime = isPrime;
         this.isPerfect = isPerfect;
@@ -21,7 +21,7 @@ public class NumberResponse {
         this.error = error;
     }
 
-    public NumberResponse(String number, boolean error){
+    public Number(String number, boolean error){
         this.number = number;
         this.error = error;
     }

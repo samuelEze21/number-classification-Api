@@ -1,5 +1,9 @@
 package com.growthleverage.numberClassificationApi.service;
 
-public interface NumberService {
 
+import com.growthleverage.numberClassificationApi.dto.request.NumberRequestDto;
+import com.growthleverage.numberClassificationApi.dto.response.NumberResponseDto;
+
+public interface NumberService {
+    NumberResponseDto classifyNumber (NumberRequestDto requestDto);
 }
