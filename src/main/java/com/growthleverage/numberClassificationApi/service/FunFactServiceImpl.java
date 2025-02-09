@@ -13,20 +13,19 @@ public class FunFactServiceImpl implements FunFactService {
 
     private static final Logger logger = LoggerFactory.getLogger(FunFactServiceImpl.class);
     private final RestTemplate restTemplate;
-    private static final String NUMBER_API_URL;
+    private final String numberApiUrl;
 
-    static {
+    public FunFactServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+
+        // Load .env variables using dotenv
         Dotenv dotenv = Dotenv.load();
-        NUMBER_API_URL = dotenv.get("NUMBER_API_URL", "https://numbersapi.com");
-    }
-
-    public FunFactServiceImpl() {
-        this.restTemplate = new RestTemplate();
+        this.numberApiUrl = dotenv.get("NUMBER_API_URL", "https://numbersapi.com");
     }
 
     @Override
     public String getFunFact(int number) {
-        String url = NUMBER_API_URL + "/" + number + "/math";
+        String url = numberApiUrl + "/" + number + "/math";
         try {
             logger.info("Fetching fun fact for number: {}", number);
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
