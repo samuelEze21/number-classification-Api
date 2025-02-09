@@ -1,22 +1,30 @@
-# Importing JDK and copying required files
+# Stage 1: Build
 FROM openjdk:17-jdk AS build
 WORKDIR /app
-COPY pom.xml .
-COPY src src
 
-# Copy Maven wrapper
-COPY mvnw .
+# Copy Maven wrapper and settings first (caching optimization)
+COPY mvnw ./
 COPY .mvn .mvn
 
-# Set execution permission for the Maven wrapper
-RUN chmod +x ./mvnw
+# Copy POM.xml before src (to leverage Docker cache)
+COPY pom.xml ./
+
+# Download dependencies before copying full source code
+RUN chmod +x ./mvnw && ./mvnw dependency:go-offline
+
+# Now copy source code
+COPY src ./src
+
+# Build the project, skipping tests for now
 RUN ./mvnw clean package -DskipTests
 
-# Stage 2: Create the final Docker image using OpenJDK 19
+# Stage 2: Run
 FROM openjdk:17-jdk
-VOLUME /tmp
-
-# Copy the JAR from the build stage
+WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+# Expose port (Render assigns dynamically)
 EXPOSE 8089
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
