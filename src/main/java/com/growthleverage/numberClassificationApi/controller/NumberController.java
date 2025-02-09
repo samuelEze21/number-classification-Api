@@ -2,14 +2,12 @@ package com.growthleverage.numberClassificationApi.controller;
 import com.growthleverage.numberClassificationApi.dto.request.NumberRequestDto;
 import com.growthleverage.numberClassificationApi.dto.response.NumberResponseDto;
 import com.growthleverage.numberClassificationApi.service.NumberService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/numbers")
+@RequestMapping("/api")
 public class NumberController {
 
     private final NumberService numberService;
@@ -18,9 +16,11 @@ public class NumberController {
         this.numberService = numberService;
     }
 
-    @GetMapping("/classify")
-    public NumberResponseDto classifyNumber(@RequestParam NumberRequestDto numberRequestDto) {
-        return numberService.classifyNumber(numberRequestDto);
+    @GetMapping("/classify-number")
+    public ResponseEntity<NumberResponseDto> classifyNumber(@RequestParam Integer number) {
+        NumberRequestDto requestDto = new NumberRequestDto(number);
+        NumberResponseDto responseDto = numberService.classifyNumber(requestDto);
+        return ResponseEntity.ok(responseDto);
     }
 
 }
