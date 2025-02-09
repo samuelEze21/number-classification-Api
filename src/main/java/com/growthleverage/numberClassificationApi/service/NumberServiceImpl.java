@@ -18,7 +18,6 @@ public class NumberServiceImpl implements NumberService {
         this.funFactService = funFactService;
     }
 
-
     @Override
     public NumberResponseDto classifyNumber(NumberRequestDto requestDto) {
         try {

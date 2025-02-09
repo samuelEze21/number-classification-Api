@@ -31,6 +31,39 @@ public class NumberServiceImplTest {
     }
 
 
+    @Test
+    public void testClassifyNumber_primeNumber() {
+        NumberRequestDto requestDto = new NumberRequestDto(7);
+        NumberResponseDto response = numberService.classifyNumber(requestDto);
+
+        assertNotNull(response);
+        assertEquals(7, response.getNumber());
+        assertTrue(response.getIsPrime());
+        assertFalse(response.getIsPerfect());
+        assertTrue(response.getProperties().contains("odd"));
+        assertEquals(7, response.getDigitSum());
+        assertNotNull(response.getFunFact());
+        assertFalse(response.getError());
+    }
+
+    @Test
+    public void testClassifyNumber_perfectNumber() {
+        NumberRequestDto requestDto = new NumberRequestDto(28);
+        NumberResponseDto response = numberService.classifyNumber(requestDto);
+
+        assertNotNull(response);
+        assertEquals(28, response.getNumber());
+        assertFalse(response.getIsPrime());
+        assertTrue(response.getIsPerfect());
+        assertTrue(response.getProperties().contains("even"));
+        assertEquals(10, response.getDigitSum());
+        assertNotNull(response.getFunFact());
+        assertFalse(response.getError());
+    }
+
+
+
+
 }
 
 

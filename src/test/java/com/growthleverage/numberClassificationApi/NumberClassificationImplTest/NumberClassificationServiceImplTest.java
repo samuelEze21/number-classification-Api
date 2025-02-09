@@ -57,31 +57,4 @@ public class NumberClassificationServiceImplTest {
 
 
 
-
-
-
-
-
-//    @Test
-//    public void test_properties(){
-//    List<String> properties153 = numberClassificationService.getProperties(153);
-//    assertTrue(properties153.contains("armstrong"));
-//    assertTrue(properties153.contains("odd"));
-//
-//    // Not Armstrong but Odd
-//    List<String> properties7 = numberClassificationService.getProperties(9);
-//    assertTrue(properties7.contains("armstrong"));
-//    assertTrue(properties7.contains("odd"));
-//
-//    // Not Armstrong but Even
-//    List<String> properties6 = numberClassificationService.getProperties(6);
-//    assertFalse(properties6.contains("armstrong"));
-//    assertTrue(properties6.contains("even"));
-//
-//    // Armstrong and Even
-//    List<String> properties370 = numberClassificationService.getProperties(370);
-//    assertTrue(properties370.contains("armstrong"));
-//    assertTrue(properties370.contains("even"));
-//}
-
 }
